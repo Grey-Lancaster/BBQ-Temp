@@ -1,10 +1,10 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <max6675.h>
-
+#include <WiFiManager.h>
 // WiFi credentials
-const char* ssid = "shop2";
-const char* password = "mine0313";
+//const char* ssid = "shop2";
+//const char* password = "mine0313";
 
 // Define MAX6675 pins
 int thermoDO = 19;
@@ -17,46 +17,72 @@ WebServer server(80);  // Server on port 80
 
 void setup() {
   Serial.begin(115200);
-  
-  // Connect to WiFi
-  connectToWiFi();
 
-  // Configure WebServer routes
+    // WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP
+    // it is a good practice to make sure your code sets wifi mode how you want it.
+
+    // put your setup code here, to run once:
+    Serial.begin(115200);
+   
+    //WiFiManager, Local intialization. Once its business is done, there is no need to keep it around
+    WiFiManager wm;
+
+    // reset settings - wipe stored credentials for testing
+    // these are stored by the esp library
+    // wm.resetSettings();
+
+    // Automatically connect using saved credentials,
+    // if connection fails, it starts an access point with the specified name ( "AutoConnectAP"),
+    // if empty will auto generate SSID, if password is blank it will be anonymous AP (wm.autoConnect())
+    // then goes into a blocking loop awaiting configuration and will return success result
+
+    bool res;
+    // res = wm.autoConnect(); // auto generated AP name from chipid
+    // res = wm.autoConnect("AutoConnectAP"); // anonymous ap
+    res = wm.autoConnect("AutoConnectAP","password"); // password protected ap
+
+    if(!res) {
+        Serial.println("Failed to connect");
+        // ESP.restart();
+    } 
+    else {
+        //if you get here you have connected to the WiFi    
+        Serial.println("connected...yeey :)");
+    }
+
+
+  
   server.on("/", HTTP_GET, handleRoot);
-  
+
   server.begin();
-  
+
   // Wait for MAX6675 to stabilize
-  delay(500);
+  delay(1000);
 }
+
 
 void loop() {
-  server.handleClient();  // Handle web server requests
+server.handleClient();  // Handle web server requests
 }
+
+
 
 float celsiusToFahrenheit(float celsius) {
   return celsius * 9.0/5.0 + 32.0;
 }
 
-void connectToWiFi() {
-  WiFi.begin(ssid, password);
-  Serial.print("Connecting to WiFi...");
+ 
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.print(".");
-  }
 
-  Serial.println();
-  Serial.print("Connected to WiFi! IP Address: ");
-  Serial.println(WiFi.localIP());
-}
 
 void handleRoot() {
+
+
+  
   float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
   
   String html = "<html><head>";
-  html += "<meta http-equiv='refresh' content='10'>";
+  html += "<meta http-equiv='refresh' content='30'>";
   html += "<style>";
 
 //  html += "body { display: flex; height: 100vh;  justify-content: center; font-family: Arial, sans-serif; }";
@@ -69,6 +95,5 @@ void handleRoot() {
   html += "<h1><center>at The Grey Fox</center></h1>";                                                            
   html += "</div>";
   html += "</body></html>";
-  
   server.send(200, "text/html", html);
 }
