@@ -47,7 +47,7 @@ void setup() {
     } 
     else {
         //if you get here you have connected to the WiFi    
-        Serial.println("connected...yeey :)");
+        Serial.println("BBQ connected...yeey :)");
     }
 
 
