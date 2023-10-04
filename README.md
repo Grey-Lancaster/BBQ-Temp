@@ -1,6 +1,6 @@
 # BBQ-Temp
 MAX6675 Temperature probe in Platformio and a web page ESP32
-# Todo:
+## Todo:
 1. ~~Wifi Manger~~
 2.  Max7219 Led Display
 3. Make web page configurable
