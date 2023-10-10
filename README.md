@@ -4,7 +4,7 @@ MAX6675 Temperature probe in Platformio and a web page ESP32
 1. ~~Wifi Manger~~
 2. ~~Max7219 Led Display~~
 3. Make web page configurable
-4. Change temp to 1 decimle 
+4. ~~Change temp to 1 decimle on Max7219~~ 
 5. FAVICON.ICO
 6. Charts
 7. Text temps
