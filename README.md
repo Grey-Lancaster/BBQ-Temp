@@ -8,3 +8,5 @@ MAX6675 Temperature probe in Platformio and a web page ESP32
 5. FAVICON.ICO
 6. Charts
 7. Text temps
+8. Better Fonts for Max 7219
+
