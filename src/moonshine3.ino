@@ -19,11 +19,17 @@ MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 #define CLK_PIN    26
 #define DATA_PIN  25
 #define CS_PIN    27
+//user defines/var
+bool animate = 1;
+unsigned long currentMillis = millis();
+unsigned long previousMillis = millis();
+int counter = 0;
+int ip = 0;
 
 MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 WebServer server(80);  // Server on port 80
-
+char message[50];
 void setup() {
     Serial.begin(115200);
 
@@ -39,21 +45,48 @@ void setup() {
         Serial.println("BBQ connected...yeey :)");
         P.begin();
         P.setIntensity(5); 
-        P.displayClear();    
+        P.displayClear();  
+        
+        IPAddress myIP = WiFi.localIP();
+        Serial.println(myIP);
+        
+ 
     }
+      currentMillis = millis();
+    if (currentMillis - previousMillis > 10000)
+    {
+        previousMillis = currentMillis;
+        animate = !animate;
+        P.displayReset();
+    }
+    if (animate)
+    {
+        char myIP[15];
+        P.displayText("Point your browser to " , PA_CENTER, 50, 1500, PA_SCROLL_LEFT, PA_NO_EFFECT);    
+
+        while (!P.displayAnimate());
+
+    
+ 
+    }   
 
     server.on("/", HTTP_GET, handleRoot);
     server.begin();
-    delay(1000);  // Wait for MAX6675 to stabilize
+      // Wait for MAX6675 to stabilize
+    delay(1000);
+
+     
 }
 
 void loop() {
+
     server.handleClient();  // Handle web server requests
   
     float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
     displayTemperature(tempF);
-    delay(2000);  // Update the display every second
-}
+    delay(5000);  // Update the display every second
+    // The temp does not update without this delay
+      }  
 
 float celsiusToFahrenheit(float celsius) {
     return celsius * 9.0/5.0 + 32.0;
@@ -61,10 +94,12 @@ float celsiusToFahrenheit(float celsius) {
 
 void displayTemperature(float temp) {
     char tempStr[10];
-    sprintf(tempStr, "%.0f F", temp);  // Convert float to string with 1 decimal place and append "F" for Fahrenheit
-    P.displayText(tempStr, PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT);
+ //   sprintf(tempStr, "%.1f F", temp);  // Convert float to string with 1 decimal place and append "F" for Fahrenheit
+    sprintf(tempStr, "%.0f F", temp);  // Convert float to string with 0 decimal place and append "F" for Fahrenheit
+     P.displayText(tempStr, PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // this display on the MAX7219
     Serial.println(tempStr);
     P.displayAnimate();
+
 }
 
 void handleRoot() {
