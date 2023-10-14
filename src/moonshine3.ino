@@ -62,7 +62,7 @@ void setup() {
     if (animate)
     {
         char myIP[15];
-        P.displayText("Point your browser to " , PA_CENTER, 50, 1500, PA_SCROLL_LEFT, PA_NO_EFFECT);    
+        P.displayText("Point your browser to " , PA_CENTER, 110, 4500, PA_SCROLL_LEFT, PA_NO_EFFECT);    
 
         while (!P.displayAnimate());
 
@@ -97,7 +97,8 @@ void displayTemperature(float temp) {
  //   sprintf(tempStr, "%.1f F", temp);  // Convert float to string with 1 decimal place and append "F" for Fahrenheit
     sprintf(tempStr, "%.0f F", temp);  // Convert float to string with 0 decimal place and append "F" for Fahrenheit
      P.displayText(tempStr, PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // this display on the MAX7219
-    Serial.println(tempStr);
+    float tempF = celsiusToFahrenheit(thermocouple.readCelsius());  // Reading temperature here just for the serial display 
+    Serial.println(String(tempF));
     P.displayAnimate();
 
 }
