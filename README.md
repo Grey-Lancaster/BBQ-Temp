@@ -9,5 +9,5 @@ MAX6675 Temperature probe in Platformio and a web page ESP32
 6. FAVICON.ICO
 7. Charts
 8. Text temps
-9. Better Fonts for Max 7219
+9. Better Fonts for Max 7219 to include ° degree symbol
 
