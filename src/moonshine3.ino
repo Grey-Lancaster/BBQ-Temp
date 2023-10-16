@@ -25,6 +25,8 @@ unsigned long currentMillis = millis();
 unsigned long previousMillis = millis();
 int counter = 0;
 int ip = 0;
+#define BUF_SIZE  75
+char curMessage[BUF_SIZE];
 
 MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
@@ -47,11 +49,11 @@ void setup() {
         P.setIntensity(5); 
         P.displayClear();  
         
-        IPAddress myIP = WiFi.localIP();
-        Serial.println(myIP);
+        IPAddress theIP = WiFi.localIP();
+        Serial.println(theIP);
         
  
-    }
+        }
       currentMillis = millis();
     if (currentMillis - previousMillis > 10000)
     {
@@ -61,13 +63,13 @@ void setup() {
     }
     if (animate)
     {
-        char myIP[15];
-        P.displayText("Point your browser to " , PA_CENTER, 110, 4500, PA_SCROLL_LEFT, PA_NO_EFFECT);    
+     // Set up first message as the IP address
 
-        while (!P.displayAnimate());
+    sprintf(curMessage, "Point your broswer to Http://%03d.%03d.%03d.%03d", WiFi.localIP()[0], WiFi.localIP()[1], WiFi.localIP()[2], WiFi.localIP()[3]);
+    // P.displayText("Point your browser to " + String(myIP) , PA_CENTER, 110, 4500, PA_SCROLL_LEFT, PA_NO_EFFECT); 
+    P.displayText(curMessage  , PA_CENTER, 110, 4500, PA_SCROLL_LEFT, PA_NO_EFFECT);   
 
-    
- 
+    while (!P.displayAnimate());
     }   
 
     server.on("/", HTTP_GET, handleRoot);
@@ -84,7 +86,7 @@ void loop() {
   
     float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
     displayTemperature(tempF);
-    delay(5000);  // Update the display every second
+    delay(5000);  // Update the display every 5 seconds
     // The temp does not update without this delay
       }  
 
