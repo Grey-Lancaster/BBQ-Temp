@@ -9,8 +9,8 @@ void displayTemperature(float temp);
 
 // Define MAX6675 pins
 int thermoDO = 19;
-int thermoCS = 5;
-int thermoCLK = 18;
+int thermoCS = 18;
+int thermoCLK = 5;
 
 MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
