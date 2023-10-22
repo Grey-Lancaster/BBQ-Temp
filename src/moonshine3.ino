@@ -4,6 +4,7 @@
 #include <WiFiManager.h>
 #include <MD_MAX72xx.h>
 #include <MD_Parola.h>
+#include "wledFont.h"
 
 void displayTemperature(float temp);
 
@@ -76,6 +77,7 @@ void setup() {
     server.begin();
       // Wait for MAX6675 to stabilize
     delay(1000);
+    P.setFont(0, wledFont_cyrillic);
 
      
 }
@@ -97,7 +99,7 @@ float celsiusToFahrenheit(float celsius) {
 void displayTemperature(float temp) {
     char tempStr[10];
  //   sprintf(tempStr, "%.1f F", temp);  // Convert float to string with 1 decimal place and append "F" for Fahrenheit
-    sprintf(tempStr, "%.0f F", temp);  // Convert float to string with 0 decimal place and append "F" for Fahrenheit
+    sprintf(tempStr, "%.0f °F", temp);  // Convert float to string with 0 decimal place and append "F" for Fahrenheit
      P.displayText(tempStr, PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // this display on the MAX7219
     float tempF = celsiusToFahrenheit(thermocouple.readCelsius());  // Reading temperature here just for the serial display 
     Serial.println(String(tempF));
