@@ -15,11 +15,22 @@ int thermoCLK = 5;
 
 MAX6675 thermocouple(thermoCLK, thermoCS, thermoDO);
 
+// Define the number of devices we have in the chain and the hardware interface
+// NOTE: These pin numbers will probably not work with your hardware and may
+// need to be adapted
+
 #define HARDWARE_TYPE MD_MAX72XX::FC16_HW
-#define MAX_DEVICES 4
+#define MAX_DEVICES 4 //number of segments
 #define CLK_PIN    26
 #define DATA_PIN  25
 #define CS_PIN    27
+
+// HARDWARE SPI
+//MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
+// SOFTWARE SPI
+MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
+
+
 //user defines/var
 bool animate = 1;
 unsigned long currentMillis = millis();
@@ -29,7 +40,6 @@ int ip = 0;
 #define BUF_SIZE  75
 char curMessage[BUF_SIZE];
 
-MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 WebServer server(80);  // Server on port 80
 char message[50];
