@@ -1,4 +1,3 @@
-# May be broken at this time
 # BBQ-Temp
 MAX6675 Temperature probe in Platformio and a web page ESP32
 ## Todo:
