@@ -98,6 +98,7 @@ float celsiusToFahrenheit(float celsius) {
 
 void displayTemperature(float temp) {
     char tempStr[10];
+ // alt 0176 gives the degree ° symbol
  //   sprintf(tempStr, "%.1f F", temp);  // Convert float to string with 1 decimal place and append "F" for Fahrenheit
     sprintf(tempStr, "%.0f °F", temp);  // Convert float to string with 0 decimal place and append "F" for Fahrenheit
      P.displayText(tempStr, PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // this display on the MAX7219
