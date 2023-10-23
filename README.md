@@ -5,7 +5,7 @@ MAX6675 Temperature probe in Platformio and a web page ESP32
 2. ~~Max7219 Led Display~~
 3. Make web page configurable
 4. ~~Print local ip on MAX7219~~
-5. ~~Change temp to 1 decimle on Max7219~~ 
+5. ~~Change temp to 0 decimle on Max7219~~ 
 6. FAVICON.ICO
 7. Charts
 8. Text temps
