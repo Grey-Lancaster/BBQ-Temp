@@ -4,7 +4,7 @@
 
 // I got wledfont.h from a great program @ https://github.com/widapro/wledPixel
 
-//#define USE_SPIFFS  // Uncomment this line if you want to use SPIFFS.
+//#define USE_SPIFFS  // Uncomment this line if you want to use SPIFFS for either an image or favicon
 
 #include <WiFi.h>
 #include <WebServer.h>
