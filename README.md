@@ -11,4 +11,5 @@ MAX6675 Temperature probe in Platformio and a web page ESP32
 8. Text temps
 9. ~~Fonts for Max 7219 to include ° degree symbol~~
 10. Work without connecting to WiFi
+11. Wiring Diagrahm
 
