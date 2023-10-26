@@ -4,7 +4,7 @@
 
 // I got wledfont.h from a great program @ https://github.com/widapro/wledPixel
 
-//#define USE_SPIFFS  // Uncomment this line if you want to use SPIFFS.
+// #define USE_SPIFFS  // Uncomment this line if you want to use SPIFFS.
 
 #include <WiFi.h>
 #include <WebServer.h>
@@ -125,7 +125,7 @@ void loop() {
   
     float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
     displayTemperature(tempF);
-    delay(5000);  // Update the display every 5 seconds
+    delay(2000);  // Update the display every 5 seconds
     // The temp does not update without this delay
       }  
 
