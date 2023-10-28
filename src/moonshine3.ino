@@ -90,7 +90,7 @@ void setup() {
      // Set up first message as the IP address
 
     sprintf(curMessage, "Point your broswer to Http://%03d.%03d.%03d.%03d", WiFi.localIP()[0], WiFi.localIP()[1], WiFi.localIP()[2], WiFi.localIP()[3]);
-    P.displayText(curMessage  , PA_CENTER, 50, 4500, PA_SCROLL_LEFT, PA_NO_EFFECT);   
+    P.displayText(curMessage  , PA_CENTER, 50, 500, PA_SCROLL_LEFT, PA_NO_EFFECT);   
 
     while (!P.displayAnimate());
     }   
@@ -114,39 +114,56 @@ void setup() {
     server.begin();
 
 // Wait for MAX6675 to stabilize
-    delay(1000);
+//    delay(1000);
     P.setFont(0, wledFont_cyrillic);
      
 }
 
-void loop() {
+unsigned long lastDisplayUpdate = 0; // Time when the display was last updated
+unsigned long lastSerialPrint = 0;   // Time when the temperature was last printed to Serial
+//const long displayInterval = 2000;   // 2 seconds
+const long displayInterval = 10000;   // 20 seconds
+const long printInterval = 10000;    // 20 seconds
 
-    server.handleClient();  // Handle web server requests
-  
-    float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
-    displayTemperature(tempF);
-    delay(2000);  // Update the display every 5 seconds
-    // The temp does not update without this delay
-      }  
+void loop() {
+    server.handleClient();
+
+    unsigned long currentMillis = millis();
+
+    // Update the display every 2 seconds
+    if (currentMillis - lastDisplayUpdate >= displayInterval) {
+        lastDisplayUpdate = currentMillis;
+        float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
+        displayTemperature(tempF);
+    }
+
+    // Print to the Serial every 10 seconds
+    if (currentMillis - lastSerialPrint >= printInterval) {
+        lastSerialPrint = currentMillis;
+        float tempF = celsiusToFahrenheit(thermocouple.readCelsius());
+        Serial.println(String(tempF));
+    }
+        // Keep updating the display animation with each loop iteration
+    P.displayAnimate();
+
+}
 
 float celsiusToFahrenheit(float celsius) {
     return celsius * 9.0/5.0 + 32.0;
 }
 
-// Declare tempStr as a global variable
-char tempStr[10];
+
+char tempStr[20];
 
 
 void displayTemperature(float temp) {
- // alt 0176 gives the degree ° symbol
- //   sprintf(tempStr, "%.1f F", temp);  // Convert float to string with 1 decimal place and append "F" for Fahrenheit
-    sprintf(tempStr, "%.0f °F", temp);  // Convert float to string with 0 decimal place and append "F" for Fahrenheit
-    P.displayText(tempStr, PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // this display on the MAX7219
-    float tempF = celsiusToFahrenheit(thermocouple.readCelsius());  // Reading temperature here just for the serial display 
-    Serial.println(String(tempF));
+    sprintf(tempStr, "Pit  %.1f °F", temp); // Include "pit" before the temperature
+    P.displayText(tempStr, PA_CENTER, 50, 10000, PA_SCROLL_LEFT, PA_SCROLL_LEFT); 
     P.displayAnimate();
+    P.displayClear();
 
 }
+
 
 void handleRoot() {
     String html = "<html><head>";
