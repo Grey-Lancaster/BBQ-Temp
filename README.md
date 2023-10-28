@@ -1,5 +1,6 @@
 # BBQ-Temp
-MAX6675 Temperature probe in Platformio and a web page ESP32
+MAX6675 Temperature probe in Platformio and a web page ESP32  
+Comming soon text temps with https://www.twilio.com/
 ## Todo:
 1. ~~Wifi Manger~~
 2. ~~Max7219 Led Display~~
@@ -11,4 +12,5 @@ MAX6675 Temperature probe in Platformio and a web page ESP32
 8. Text temps
 9. ~~Fonts for Max 7219 to include ° degree symbol~~
 10. Work without connecting to WiFi
+11. Wiring Diagrahm
 
