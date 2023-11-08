@@ -12,5 +12,5 @@ Comming soon text temps with https://www.twilio.com/
 8. Text temps
 9. ~~Fonts for Max 7219 to include ° degree symbol~~
 10. Work without connecting to WiFi
-11. Wiring Diagrahm
+11. Wiring Diagram
 
