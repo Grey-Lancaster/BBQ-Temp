@@ -3,6 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP Web Tools Test</title>
+</head>
+<body>
+
+  <h1>ESP Web Tools Test</h1>
+  <p>If this works, you should see a button below to flash firmware.</p>
+
+  <script src="https://esphome.github.io/esp-web-tools/dist/web.js"></script>
+  <esp-web-install-button
+    manifest="./manifest.json"
+    style="display: block; margin: 20px 0;">
+  </esp-web-install-button>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flash ESP32 Firmware</title>
 </head>
 <body>
