@@ -20,6 +20,24 @@
     manifest="./manifest.json"
     style="display: block; margin: 20px 0;">
   </esp-web-install-button>
+  
+  <!-- Section for CH340 Driver Instructions -->
+  <h2>Do You Need CH340 Drivers?</h2>
+  <p>If your computer is unable to recognize the ESP32 when you try to flash the firmware, you may need to install the CH340 USB-to-serial drivers.</p>
+
+  <h3>How to Install the CH340 Driver:</h3>
+  <ul>
+    <li>Download the CH340 driver for your operating system:</li>
+    <ul>
+      <li><a href="https://sparks.gogo.co.nz/assets/_site_/downloads/CH34x_Install_Windows_v3_4.zip" target="_blank">Windows Driver (CH340)</a></li>
+      <li><a href="https://sparks.gogo.co.nz/assets/_site_/downloads/CH34x_Install_Mac_v1.5.zip" target="_blank">Mac OS Driver (CH340)</a></li>
+    </ul>
+    <li>Unzip the downloaded file.</li>
+    <li>Run the installer and follow the on-screen instructions to complete the installation.</li>
+    <li>Once installed, reconnect your ESP32 and try flashing the firmware again.</li>
+  </ul>
+
+  <p>After installing the drivers, your computer should recognize the ESP32, and you can proceed with flashing the firmware.</p>
 
 </body>
 </html>
