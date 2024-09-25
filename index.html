@@ -10,13 +10,14 @@
   <h1>Flash Your ESP32 Firmware!</h1>
   <p>Click the button below to flash the latest firmware to your ESP32 device.</p>
 
-  <!-- Correct ESP Web Tools Integration -->
-  <script src="https://unpkg.com/esp-web-tools@8.1.0/dist/web.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
+></script>
 
   <esp-web-install-button
-    manifest="./manifest.json"
-    style="display: block; margin: 20px 0;">
-  </esp-web-install-button>
+  manifest="https://firmware.esphome.io/esp-web-tools/manifest.json"
+></esp-web-install-button>
 
 </body>
 </html>
