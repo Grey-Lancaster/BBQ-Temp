@@ -7,11 +7,13 @@
 </head>
 <body>
 
-  <h1>Welcome to My Awesome CYD PhotoFrame Project</h1>
+  <h1>Flash Your ESP32 Firmware!</h1>
   <p>Click the button below to flash the latest firmware to your ESP32 device.</p>
 
-  <!-- ESP Web Tools Integration -->
-  <script src="https://esphome.github.io/esp-web-tools/dist/web.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
+></script>
 
   <esp-web-install-button
     manifest="./manifest.json"

@@ -1,5 +1,5 @@
 {
-  "name": "My Awesome CYD PhotoFrame Project",
+  "name": "BBQ Temp ESP32 Project",
   "version": "1.0.0",
   "builds": [
     {
@@ -8,7 +8,7 @@
       "parts": [
         {
           "path": "firmware.bin",
-          "offset": 65536
+          "offset": 0
         }
       ]
     }
