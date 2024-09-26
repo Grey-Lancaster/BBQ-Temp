@@ -8,19 +8,32 @@
 <body>
 
   <h1>Flash Your CYD PhotoFrame Firmware!</h1>
-  <p>If you do not see the comport, you need to install the CH340 drivers on the following page.</p>
-  <p>Click the button below to flash the latest firmware to your ESP32 device.</p>
+  <p>If you do not see the COM port, you need to install the CH340 drivers from the instructions below.</p>
+  <p>Click one of the buttons below to flash the latest firmware to your ESP32 device.</p>
 
-<script
-  type="module"
-  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
-></script>
+  <h2>CYD (One USB Port)</h2>
+  <p>If your CYD PhotoFrame device has one USB port, click the button below to flash the firmware.</p>
 
+  <script
+    type="module"
+    src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module">
+  </script>
+
+  <!-- Button for CYD with one USB port -->
   <esp-web-install-button
     manifest="./manifest.json"
     style="display: block; margin: 20px 0;">
   </esp-web-install-button>
-  
+
+  <h2>CYD2 (Two USB Ports)</h2>
+  <p>If your CYD2 PhotoFrame device has two USB ports, click the button below to flash the firmware.</p>
+
+  <!-- Button for CYD2 with two USB ports -->
+  <esp-web-install-button
+    manifest="./firmware2.json"
+    style="display: block; margin: 20px 0;">
+  </esp-web-install-button>
+
   <!-- Section for CH340 Driver Instructions -->
   <h2>Do You Need CH340 Drivers?</h2>
   <p>If your computer is unable to recognize the ESP32 when you try to flash the firmware, you may need to install the CH340 USB-to-serial drivers.</p>
