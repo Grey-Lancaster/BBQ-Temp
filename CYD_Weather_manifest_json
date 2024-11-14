@@ -1,9 +1,10 @@
 {
-  "name": "CYD Weather Station",
-  "version": "1.0.0",
+  "name": "CYD2 ESP32 Firmware",
+  "version": "1.9.0",
   "builds": [
     {
       "chipFamily": "ESP32",
+      "improv": false,
       "parts": [
         {
           "path": "weather.bin",
