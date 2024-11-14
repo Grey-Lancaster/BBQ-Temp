@@ -1,0 +1,15 @@
+{
+  "name": "CYD Weather Station",
+  "version": "1.0.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "https://your-link-to-weather-station.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
