@@ -1,4 +1,5 @@
-  "name": "CYD2 Allternate PhotoFrame Firmware",
+{
+"name": "CYD2 Allternate PhotoFrame Firmware",
   "version": "1.9.0",
   "builds": [
     {
