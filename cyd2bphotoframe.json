@@ -1,0 +1,15 @@
+  "name": "CYD2 Allternate PhotoFrame Firmware",
+  "version": "1.9.0",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "improv": false,
+      "parts": [
+        {
+          "path": "cyd2bphotoframe.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
